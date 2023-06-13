@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: goecho
+  name: go-echo
   labels:
-    app: goecho
+    app: go-echo
+  namespace: devhub-e2e-test-id-1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: goecho
+      app: go-echo
   template:
     metadata:
       labels:
-        app: goecho
+        app: go-echo
     spec:
       containers:
-        - name: nginx
-          image: echogo.azurecr.io/echogo
+        - name: go-echo
+          image: devhube2efcf4462e60b8474db8515d62e601b699.azurecr.io/kubeimage:latest:latest
           ports:
             - containerPort: 1323
