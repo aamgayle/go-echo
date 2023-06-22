@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-app
+  name: go-echo
   labels:
-    app: test-app
-  namespace: namespace-workflow-1671053601031
+    app: go-echo
+  namespace: devhub-e2e-test-id-1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-app
+      app: go-echo
   template:
     metadata:
       labels:
-        app: test-app
+        app: go-echo
     spec:
       containers:
-        - name: test-app
-          image: testacr.azurecr.io/myapp:latest
+        - name: go-echo
+          image: devhube2ece2e17e16b774ad8bc2b13b86edb819f.azurecr.io/kubeimage:latest:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 1323
