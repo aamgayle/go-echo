@@ -35,8 +35,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: asgayle
-  CONTAINER_NAME: asgayle-eh
+  AZURE_CONTAINER_REGISTRY: asgayletwo
+  CONTAINER_NAME: asgayle
   RESOURCE_GROUP: asgayle-test
   CLUSTER_NAME: asgayle-test
   DEPLOYMENT_MANIFEST_PATH: ./manifests
