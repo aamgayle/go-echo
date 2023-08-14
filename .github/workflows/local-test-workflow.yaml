@@ -9,7 +9,7 @@ env:
     AZURE_CONTAINER_REGISTRY: acrworkflow1671053601031
     CLUSTER_NAME: test-cluster
     CLUSTER_RESOURCE_GROUP: test-resource-group
-    CONTAINER_NAME: ""
+    CONTAINER_NAME: image-workflow-1670968675590
     DEPLOYMENT_MANIFEST_PATH: |
         manifests/deployment.yaml
         manifests/service.yaml
