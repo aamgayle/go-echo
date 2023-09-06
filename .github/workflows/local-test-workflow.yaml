@@ -7,12 +7,12 @@ name: local-test-workflow
 env:
     ACR_RESOURCE_GROUP: test-resource-group
     AZURE_CONTAINER_REGISTRY: acrworkflow1671053601031
+    CHART_OVERRIDE_PATH: ./helloworld-chart/values.yaml
+    CHART_OVERRIDES: image.repository=acrworkflow1671053601031.azurecr.io/image-workflow-1670968675590,image.tag=${{ github.sha }}
+    CHART_PATH: ./helloworld-chart
     CLUSTER_NAME: test-cluster
     CLUSTER_RESOURCE_GROUP: test-resource-group
-    CONTAINER_NAME: ""
-    DEPLOYMENT_MANIFEST_PATH: |
-        manifests/deployment.yaml
-        manifests/service.yaml
+    CONTAINER_NAME: image-workflow-1670968675590
 jobs:
     buildImage:
         permissions:
@@ -56,10 +56,5 @@ jobs:
                 cluster-name: ${{ env.CLUSTER_NAME }}
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
-            - uses: Azure/k8s-deploy@v4
-              name: Deploys application
-              with:
-                action: deploy
-                images: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
-                manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
-                namespace: namespace-workflow-1671053601031
+            - name: Deploy application
+              run: helm upgrade --wait -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} test-app ${{ env.CHART_PATH }}
